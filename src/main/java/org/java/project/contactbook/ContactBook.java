@@ -97,10 +97,11 @@ import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-enum ReportType {ADD, DELETE, SHOW};
+
+;
 
 public class ContactBook {
-    private static class Contact {
+    public static class Contact {
         private String name;
         private long number;
 
@@ -117,85 +118,7 @@ public class ContactBook {
             return number;
         }
     }
-    private static List<Contact> contacts = new ArrayList<>();
-    private static int count = 0;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("1.ADD; 2.Delete; 3.Show; 4.Exit ");
-            int userChoice = scanner.nextInt();
-
-            switch (userChoice) {
-                case 1:
-                    Book(ReportType.ADD);
-                    break;
-                case 2:
-                    Book(ReportType.DELETE);
-                    break;
-                case 3:
-                    Book(ReportType.SHOW);
-                    break;
-                case 4:
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid Input");
-            }
-        }
-    }
-
-    private static void Book(ReportType options) {
-        switch (options) {
-            case ADD:
-                AddingContact();
-                ShowContact();
-                break;
-            case DELETE:
-                DeleteContact();
-                ShowContact();
-                break;
-            case SHOW:
-                ShowContact();
-                break;
-            default:
-                System.out.println("Invalid Input");
-        }
-    }
-
-    private static void AddingContact() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the Name: ");
-        String name = sc.next();
-        System.out.println("Enter the Number: ");
-        long number = sc.nextLong();
-
-        Contact newContact = new Contact(name, number);
-        contacts.add(newContact);
-
-        count++;
-    }
-
-    private static void DeleteContact() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the Name to delete: ");
-        String nameToDelete = sc.next();
-
-        contacts.removeIf(contact -> contact.getName().equalsIgnoreCase(nameToDelete));
-
-        System.out.println("Contact deleted successfully.");
-        count--;
-    }
-
-    private static void ShowContact() {
-        System.out.println("Contacts:");
-
-        for (Contact contact : contacts) {
-            System.out.println("Name: " + contact.getName() + ", Number: " + contact.getNumber());
-        }
-
-        System.out.println("Total Contacts: " + count);
-    }
 
 }
 
